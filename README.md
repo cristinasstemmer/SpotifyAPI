@@ -17,7 +17,7 @@ Este projeto é uma aplicação web que exibe um ranking de artistas pop e os g�
 
 ## Pré-requisitos
 
-Antes de rodar a aplicação, certifique-se de ter o Python e o Flask instalados.
+Antes de rodar a aplicação, certifique-se de ter o Python e o Flask instalados. Você também precisa de um token de acesso válido da API do Spotify.
 
 ## Instalação
 
@@ -35,6 +35,9 @@ Antes de rodar a aplicação, certifique-se de ter o Python e o Flask instalados
     ```bash
     pip install Flask requests
     ```
+3. **Configure o token de acesso da API do Spotify:**
+
+   No arquivo `main.py`, substitua o valor de `YOUR_TOKEN` pelo seu token de acesso da API do Spotify.
 
 ## Execução
 
