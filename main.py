@@ -1,6 +1,6 @@
 import requests
 
-ACCESS_TOKEN = 'BQB5dgKXyZ0HrbKyQwPc4WVYvdbHEy07IWZT9xr6ndNbjSsQIevxSj76nNjqbtLvNRApLwuIG6qC40xFzvD4ZAKfFW5pnsJh_cA0FPHX9GGnaNzmmVs'
+ACCESS_TOKEN = 'YOUR_TOKEN'
 
 ARTISTS_IDS = [
     "6eUKZXaKkcviH0Ku9w2n3V", "1dfeR4HaWDbWqFHLkxsg1d", "66CXWjxzNUsdJxJ2JdwvnR",
