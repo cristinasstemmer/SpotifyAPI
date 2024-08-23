@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rankings de Artistas e Gêneros</title>
+    <link rel="stylesheet" href="/static/styles.css"> <!-- Link para o arquivo CSS externo -->
+</head>
+<body>
+    <div class="container">
+        <h1>Rankings de Artistas e Gêneros</h1>
+        <div class="list">
+            <h2>Artistas Pop</h2>
+            <table id="pop-artists-table">
+                <thead>
+                    <tr>
+                        <th>Nome</th>
+                        <th>Seguidores</th>
+                        <th>Popularidade</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Dados dos artistas serão inseridos aqui -->
+                </tbody>
+            </table>
+        </div>
+        <div class="list">
+            <h2>Gêneros Mais Comuns</h2>
+            <table id="common-genres-table">
+                <thead>
+                    <tr>
+                        <th>Gênero</th>
+                        <th>Quantidade</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Dados dos gêneros serão inseridos aqui -->
+                </tbody>
+            </table>
+        </div>
+        <div id="error-message" class="error"></div>
+    </div>
+
+    <script>
+        function populateTables(data) {
+            const popArtistsTable = document.getElementById('pop-artists-table').getElementsByTagName('tbody')[0];
+            const commonGenresTable = document.getElementById('common-genres-table').getElementsByTagName('tbody')[0];
+            const errorMessage = document.getElementById('error-message');
+
+            errorMessage.innerText = '';
+
+            if (data.pop_artists) {
+                data.pop_artists.forEach(artist => {
+                    const row = popArtistsTable.insertRow();
+                    row.insertCell(0).innerText = artist.artist_name || 'Nome não disponível';
+                    row.insertCell(1).innerText = artist.followers || 'Seguidores não disponíveis';
+                    row.insertCell(2).innerText = artist.popularity || 'Popularidade não disponível';
+                });
+            } else {
+                errorMessage.innerText += 'Dados dos artistas pop não encontrados.\n';
+            }
+
+            if (data.common_genres) {
+                data.common_genres.forEach(genre => {
+                    const row = commonGenresTable.insertRow();
+                    row.insertCell(0).innerText = genre || 'Gênero não disponível';
+                    row.insertCell(1).innerText = data.genres_count[genre] || 'N/A';
+                });
+            } else {
+                errorMessage.innerText += 'Dados dos gêneros comuns não encontrados.\n';
+            }
+        }
+
+        // Fetch dados do servidor e preencher as tabelas
+        fetch('/data')
+            .then(response => response.json())
+            .then(data => populateTables(data))
+            .catch(error => document.getElementById('error-message').innerText = 'Erro ao buscar dados: ' + error);
+    </script>
+</body>
+</html>
